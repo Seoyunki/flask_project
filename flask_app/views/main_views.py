@@ -4,6 +4,7 @@ from flask_app.models import Movies, Ratings, Users
 from werkzeug.utils import redirect
 from ..forms import RatingForm, AddForm
 from .. import db
+import psycopg2
 
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -35,7 +36,12 @@ def rating_list():
 def create():
     form = RatingForm()
     if request.method == 'POST':
-        rating = Ratings(userid=form.userid.data, movieid=form.movieid.data, rating=form.rating.data, timestamp=int(time.time()))
+        db_rating = psycopg2.connect(host='localhost', dbname='s3db', user='postgres', password='seo8009', port=5432)
+        cursor = db_rating.cursor()
+        cursor.execute("SELECT id from Ratings ORDER BY id desc limit 1")
+        result = cursor.fetchone()
+
+        rating = Ratings(id=result[0]+1, userid=form.userid.data, movieid=form.movieid.data, rating=form.rating.data, timestamp=int(time.time()))
         db.session.add(rating)
         db.session.commit()
         return redirect(url_for('main.index'))
@@ -45,8 +51,14 @@ def create():
 @bp.route('/add/', methods=('GET', 'POST'))
 def add():
     form = AddForm()
+
     if request.method == 'POST':
-        movie = Movies(title=form.title.data, genres=form.genres.data)
+        db_movie = psycopg2.connect(host='localhost', dbname='s3db', user='postgres', password='seo8009', port=5432)
+        cursor = db_movie.cursor()
+        cursor.execute("SELECT id from Movies ORDER BY id desc limit 1")
+        result = cursor.fetchone()
+
+        movie = Movies(id = result[0] +1, title=form.title.data, genres=form.genres.data)
         db.session.add(movie)
         db.session.commit()
         return redirect(url_for('main.index'))
