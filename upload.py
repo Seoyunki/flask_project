@@ -3,7 +3,7 @@ import csv
 from flask_app import db
 
 ## 처음에 데이터 파일 불러오고 LOCAL 서버에 업로드시에만 1회 사용
-
+python3
 # # 영화 정보 입력
 # f = open('movies_mini.csv', 'r', encoding='utf-8')
 # movie_list = csv.reader(f)
