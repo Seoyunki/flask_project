@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class = "container ">
+    <h5 class="my-3 border-bottom pb-2">선택한 영화와 비슷한 영화 찾기</h5>
+        <form method="post" class="post-form my-3">
+        {{form.csrf_token}}
+        <!-- 오류 표시 Start-->
+        {% for field, errors in form.errors.items() %}
+        <div class="alert alert-danger" role="alert">
+            <strong>{{ form[field].label }}</strong>: {{', '.join(errors) }}
+        </div>
+        {% endfor %}
+        <!-- 오류 표시 End -->
+        {{form.movie_title.label}}
+        {{form.movie_title()}}
+
+        <button type="submit" class="btn btn-primary">영화 추천</button>
+    </form>
+</div>
+
+{% endblock %}
+

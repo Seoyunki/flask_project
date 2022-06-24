@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-3">
+    <h5>머신러닝을 활용한 영화 추천 서비스</h5>
+    <li>
+        <a href="{{ url_for('mlearning.machine_learning') }}" class='btn btn-primary'>사용자 기반으로 추천 받기</a>
+    </li>
+</div>
+<div class="container my-3">
+    <li>
+        <a href="{{ url_for('mlearning.sub_learning') }}" class='btn btn-primary'>영화 기반으로 추천 받기</a>
+    </li>
+</div>
+{% endblock %}

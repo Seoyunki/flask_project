@@ -1,0 +1,4 @@
+.idea
+data_set.db
+*.pyc
+__pycache__

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="table-primary">
+            <th class="col-sm-1">순번</th>
+            <th class="col-sm-9">항목</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{1}}</td>
+            <td><a href="/movie/list">{{'영화 리스트'}}</a></td>
+        </tr>
+        <tr>
+            <td>{{2}}</td>
+            <td><a href="/movie/rating">{{'영화 평점 리스트'}}</a></td>
+        </tr>
+        <tr>
+            <td>{{3}}</td>
+            <td><a href="/ml/suggest">{{'영화 추천 받기'}}</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!--<ul>-->
+<!--    <li><a href="/movie/list">{{ '영화 리스트' }}</a></li>-->
+<!--    <li><a href="/movie/rating">{{ '영화 평점 리스트' }}</a></li>-->
+<!--    <li><a href="/ml/suggest">{{ 'Machine Learing' }}</a></li>-->
+<!--</ul>-->
+{% endblock %}

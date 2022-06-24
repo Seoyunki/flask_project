@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h5> {{'조회한 사람의 이름은 : '}}</h5>
+<ul>
+    {% for user in queried_user %}
+        <li>{{user.user_name}}</li>
+    {% endfor %}
+</ul>
+<h5> {{'조회한 분이 평점을 매긴 영화들을 기반으로 예측한 조회한 분의 취향의 영화 Top 10 입니다.'}}</h5>
+<h7> {{'(조회한 분이 아직 보지 않으신 영화만을 대상으로 합니다.)'}}</h7>
+<ul>
+    {% for movie in mycontent %}
+        <li>{{movie}}</li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
+
