@@ -1,1 +1,1 @@
-web:gunicorn --worker=1 'flask_app:create_app()'
+web:gunicorn --worker=1 'flask_app/__init__':app --bind 0.0.0.0:${PORT}
