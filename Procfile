@@ -1,1 +1,1 @@
-web:gunicorn --pythonpath flask_app __init__.py
+web: gunicorn --pythonpath flask_app __init__.py
