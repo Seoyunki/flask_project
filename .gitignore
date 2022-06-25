@@ -1,4 +1,4 @@
 .idea
-data_set.db
 *.pyc
+data_set.db
 __pycache__
