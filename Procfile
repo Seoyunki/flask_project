@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath flask_app __init__.py
+web: gunicorn --workers=1 'flask_app:create_app()'
