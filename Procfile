@@ -1,1 +1,1 @@
-web:gunicorn 'flask_app/__init__:create_app()'
+web:gunicorn --pythonpath flask_app __init__.py
