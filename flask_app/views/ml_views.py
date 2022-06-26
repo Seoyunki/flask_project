@@ -4,6 +4,7 @@ from flask_app import db
 from flask_app.models import Movies, Ratings, Users, Suggests
 from ..forms import mlForm, mlsubForm
 import time
+import psycopg2
 
 bp = Blueprint('mlearning', __name__, url_prefix='/ml')
 
@@ -100,9 +101,14 @@ def machine_learning():
         queried_user = Users.query.filter_by(id = userid)
 
         for content in mycontent:
-            suggest_movies = Suggests(userid=userid, suggest_movie=content, suggest_time=int(time.time()))
+            db_suggest = psycopg2.connect(host='localhost', dbname='s3db', user='postgres', password='seo8009',
+                                          port=5432)
+            cursor = db_suggest.cursor()
+            cursor.execute("SELECT id from Suggests ORDER BY id desc limit 1")
+            result = cursor.fetchone()
+            suggest_movies = Suggests(id=result[0]+1, userid=userid, suggest_movie=content, suggest_time=int(time.time()))
             db.session.add(suggest_movies)
-        db.session.commit()
+            db.session.commit()
 
         return render_template('ml/result.html', mycontent=mycontent, queried_user=queried_user)
     return render_template('ml/suggest.html', form=form)
